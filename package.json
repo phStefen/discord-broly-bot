@@ -1,0 +1,33 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "Bot para Discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js --watch src/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phStefen/discord-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phStefen/discord-bot/issues"
+  },
+  "homepage": "https://github.com/phStefen/discord-bot#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.2",
+    "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
+    "ffmpeg": "0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "yt-search": "^2.2.2",
+    "ytdl-core-discord": "^1.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

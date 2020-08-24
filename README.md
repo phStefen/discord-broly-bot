@@ -1,2 +1,2 @@
-# discord-broly-bot
- Bot do Broly
+# discord-bot
+ Bot para Discord
