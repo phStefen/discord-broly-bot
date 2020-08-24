@@ -51,6 +51,8 @@ const playSong = async (bot,msg,song) => {
         bot.queues.set(msg.member.guild.id, queue);
     }
     
+    queue.dispatcher.setVolume(0.5);
+    
     queue.dispatcher = await queue.connection.play(
         await ytdl(
             song.videoId, 
