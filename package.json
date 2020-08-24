@@ -4,8 +4,8 @@
   "description": "Bot para Discord",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.js --watch src/*"
+    "dev": "nodemon src/index.js --watch src/*",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -29,5 +29,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": "v12.18.0"
   }
 }
