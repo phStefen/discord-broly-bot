@@ -43,7 +43,7 @@ const playSong = async (bot,msg,song) => {
     if(!queue){
         const conn = await msg.member.voice.channel.join();
         queue = {
-            volume: 10,
+            volume: 0.5,
             connection: conn,
             dispatcher: null,
             songs: [song]
