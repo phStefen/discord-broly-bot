@@ -1,6 +1,7 @@
 const search = require("yt-search");
 const ytdl = require("ytdl-core-discord");
 const id = { listId: 'PLt0X8ZrznTdRLsOAZ-e38gvDD9TJ33wmE' }
+const playS = require("./play").playSong;
 
 const execute = (bot,msg,args) => {
     if(!msg.member.voice.channel) return msg.reply("Entre em um Canal de Voz para Tocar uma Música");
@@ -19,7 +20,7 @@ const execute = (bot,msg,args) => {
                     bot.queues.set(msg.guild.id, queue);
                 }
 
-                else playSong(bot,msg,videos);
+                else playSongs(bot,msg,videos);
             }
             else{
                 return msg.reply("Não achei essa Playlist");
@@ -30,7 +31,7 @@ const execute = (bot,msg,args) => {
     }
 };
 
-const playSong = async (bot,msg,song) => {
+const playSongs = async (bot,msg,song) => {
     let queue = bot.queues.get(msg.member.guild.id);
     if(!song){
         if(queue){
@@ -46,13 +47,7 @@ const playSong = async (bot,msg,song) => {
             dispatcher: null,
             songs: [song[0]],
         };
-
-        song.shift();
-        song.forEach(v => {queue.songs.push(v);});
-        bot.queues.set(msg.member.guild.id, queue);
     }
-    
-    queue.dispatcher.setVolume(0.5);
 
     queue.dispatcher = await queue.connection.play(
         await ytdl(
@@ -61,15 +56,21 @@ const playSong = async (bot,msg,song) => {
             ),
         {type: "opus",}
     );
+    
+    queue.dispatcher.setVolume(0.5);
 
     queue.dispatcher.on("finish",() => {
         queue.songs.shift();
-        playSong(bot,msg,queue.songs[0]);
+        playS(bot,msg,queue.songs[0]);
     });
 
     queue.dispatcher.on("start",() => {
         msg.channel.send(`Tocando: ${queue.songs[0].title}`);
     });
+
+    song.shift();
+    song.forEach(v => {queue.songs.push(v);});
+    bot.queues.set(msg.member.guild.id, queue);
 }
 
 function shuffle(array) {

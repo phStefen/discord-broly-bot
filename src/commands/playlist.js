@@ -18,7 +18,7 @@ const execute = (bot,msg,args) => {
 };
 
 module.exports = {
-    name: "pl",
+    name: "li",
     help: "Mostra a Fila de Músicas",
     execute,
 };
