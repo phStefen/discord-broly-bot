@@ -46,6 +46,9 @@ const playSong = async (bot,msg,song) => {
             dispatcher: null,
             songs: [song[0]],
         };
+
+        song.shift();
+        song.forEach(v => {queue.songs.push(v);});
         bot.queues.set(msg.member.guild.id, queue);
     }
     
@@ -65,10 +68,6 @@ const playSong = async (bot,msg,song) => {
     queue.dispatcher.on("start",() => {
         msg.channel.send(`Tocando: ${queue.songs[0].title}`);
     });
-
-    song.shift();
-    song.forEach(v => {queue.songs.push(v);});
-    bot.queues.set(msg.guild.id, queue);
 }
 
 function shuffle(array) {
